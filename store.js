@@ -11,7 +11,7 @@ export const CATEGORIES = [
   { key: "professionalism", label: "Professionalism and reliability" },
 ];
 
-export const LIMITS = { comment: 100, name: 40, country: 56, photos: 3, reply: 500 };
+export const LIMITS = { comment: 1000, name: 40, country: 56, photos: 3, reply: 500 };
 
 export const DEFAULT_PROFILE = {
   name: "Marco Sandroni",
@@ -74,7 +74,7 @@ export function cleanReviewInput(input) {
   };
   if (!out.firstName || !out.lastName) throw new Error("Add your first and last name.");
   if (!out.country) throw new Error("Add your country.");
-  if (!out.comment) throw new Error("Write a short comment (up to 100 characters).");
+  if (!out.comment) throw new Error("Write a short comment (up to 1000 characters).");
   return out;
 }
 

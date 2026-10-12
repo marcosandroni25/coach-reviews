@@ -158,7 +158,7 @@ textarea.input { resize: vertical; min-height: 84px; }
 .r-country { color: var(--grey); font-size: 14px; }
 .r-meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin: 4px 0 8px; font-family: var(--font-data); font-size: 12px; color: var(--grey); }
 .r-meta .score { color: var(--black); font-weight: 700; }
-.r-comment { margin: 0; overflow-wrap: anywhere; }
+.r-comment { margin: 0; overflow-wrap: anywhere; white-space: pre-line; max-width: 72ch; }
 .chip { font: 700 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; padding: 4px 6px; box-shadow: inset 0 0 0 1px currentColor; }
 .chip.sample { color: var(--grey); }
 .chip.hidden { color: var(--err); }

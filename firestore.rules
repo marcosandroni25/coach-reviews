@@ -24,7 +24,7 @@ service cloud.firestore {
       return isStr(d.firstName, 1, 40)
         && isStr(d.lastName, 1, 40)
         && isStr(d.country, 1, 56)
-        && isStr(d.comment, 1, 100)
+        && isStr(d.comment, 1, 1000)
         && d.photos is list && d.photos.size() <= 3
         && d.ratings is map
         && d.ratings.keys().hasOnly(['technical', 'communication', 'planning', 'motivation', 'professionalism'])

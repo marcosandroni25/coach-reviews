@@ -40,7 +40,7 @@ Las fotos de las reseñas se comprimen en el navegador y se guardan dentro de ca
 
 - **Calificación:** el visitante pone de 1 a 5 estrellas en cada una de las 5 categorías. La nota general es el promedio de esas cinco.
 - **El resumen muestra:** el promedio general, la distribución de 5★ a 1★ (según la nota general redondeada) y el promedio de cada categoría.
-- **Comentario:** obligatorio, hasta 100 caracteres. **Fotos:** opcionales, hasta 3.
+- **Comentario:** obligatorio, hasta 1000 caracteres. **Fotos:** opcionales, hasta 3.
 - **Una reseña por navegador:** el visitante puede editarla o borrarla desde ese mismo navegador. Si borra los datos del navegador o usa otro dispositivo, puede escribir una reseña nueva. Sin cuentas no se puede evitar del todo, pero el admin puede borrar duplicados.
 - **Orden:** por defecto, las más recientes primero. También se pueden ordenar por mejor o peor calificación.
 - **Botón Copy link:** copia la URL de la página. Al pegarla en WhatsApp, Instagram, etc. aparece la vista previa con la foto, que viene de las etiquetas `og:` de `index.html`.
