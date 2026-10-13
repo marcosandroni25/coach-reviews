@@ -4,10 +4,11 @@ Archivos de este repositorio:
 
 | Archivo | Para qué sirve |
 |---|---|
-| `index.html` | Página pública con el perfil y las reseñas. Es el link que se comparte. |
-| `admin.html` | Panel privado para editar el perfil y moderar reseñas. Pide iniciar sesión con Google y solo acepta la cuenta `marco.sandroni25@gmail.com`. No tiene ningún enlace desde la página pública. |
-| `config.js` | Configuración de Firebase. Mientras esté vacío, todo funciona en **modo demo**: los datos se guardan solo en el navegador. |
+| `review/index.html` | Página pública con el perfil y las reseñas. Es el link que se comparte. |
+| `review/admin.html` | Panel privado para editar el perfil y moderar reseñas. Pide iniciar sesión con Google y solo acepta la cuenta `marco.sandroni25@gmail.com`. No tiene ningún enlace desde la página pública. |
+| `review/config.js` | Configuración de Firebase. Mientras esté vacío, todo funciona en **modo demo**: los datos se guardan solo en el navegador. |
 | `firestore.rules` | Reglas de seguridad de la base de datos. |
+| `index.html` (raíz) | Redirige la raíz del dominio a `/review/`. |
 
 ## 1. Crear el proyecto de Firebase (gratis, unos 10 minutos)
 
@@ -17,9 +18,9 @@ Archivos de este repositorio:
 4. **Build → Authentication → Get started → Sign-in method.** Activá:
    - **Anonymous.** Así cada visitante deja su reseña sin crear una cuenta, y la reseña queda ligada a su navegador.
    - **Google.** Es el acceso al panel de admin.
-5. **Authentication → Settings → Authorized domains:** agregá `marcosandroni25.github.io`.
+5. **Authentication → Settings → Authorized domains:** agregá `marcosandroni25.github.io` y `coachmarcosandroni.com`.
 6. **Project settings (⚙️) → Your apps → Web (`</>`).** Registrá la app y copiá el objeto `firebaseConfig`.
-7. Pegá esos valores en `config.js` y subí el cambio (commit en `main`).
+7. Pegá esos valores en `review/config.js` y subí el cambio (commit en `main`).
 
 Las fotos de las reseñas se comprimen en el navegador y se guardan dentro de cada reseña. No hace falta Firebase Storage ni el plan pago.
 
@@ -27,8 +28,20 @@ Las fotos de las reseñas se comprimen en el navegador y se guardan dentro de ca
 
 1. En GitHub, andá a **Settings → Pages → Build and deployment:** Source *Deploy from a branch*, Branch `main`, carpeta `/ (root)`.
 2. Los links quedan así:
-   - Público, para compartir: `https://marcosandroni25.github.io/coach-reviews/`
-   - Admin, privado: `https://marcosandroni25.github.io/coach-reviews/admin.html`
+   - Público, para compartir: `https://coachmarcosandroni.com/review`
+   - Admin, privado: `https://coachmarcosandroni.com/review/admin.html`
+   - Mientras el dominio no esté configurado: `https://marcosandroni25.github.io/coach-reviews/review/`
+
+## 2b. Dominio propio (coachmarcosandroni.com)
+
+1. En el panel donde compraste el dominio, entrá a la configuración de **DNS**, borrá los registros `A`/`AAAA` de `@` que vengan por defecto y creá:
+   - 4 registros **A**, host `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - 4 registros **AAAA**, host `@`: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
+   - 1 registro **CNAME**, host `www`, valor `marcosandroni25.github.io`
+2. En GitHub, en **Settings → Pages → Custom domain**, escribí `coachmarcosandroni.com` y tocá **Save**. Esperá a que el chequeo de DNS se ponga en verde (de minutos a unas horas) y activá **Enforce HTTPS**.
+3. En Firebase, en **Authentication → Settings → Authorized domains**, agregá `coachmarcosandroni.com`.
+
+Cuando exista la web principal: si se hace en este mismo repo, `/review` sigue igual. Si se hace en otra plataforma (Wix, etc.), mové esta página a `review.coachmarcosandroni.com` y configurá en la otra web una redirección de `/review` a ese subdominio.
 
 ## 3. Primeros pasos en el admin
 
@@ -43,4 +56,4 @@ Las fotos de las reseñas se comprimen en el navegador y se guardan dentro de ca
 - **Comentario:** obligatorio, hasta 1000 caracteres. **Fotos:** opcionales, hasta 3.
 - **Una reseña por navegador:** el visitante puede editarla o borrarla desde ese mismo navegador. Si borra los datos del navegador o usa otro dispositivo, puede escribir una reseña nueva. Sin cuentas no se puede evitar del todo, pero el admin puede borrar duplicados.
 - **Orden:** por defecto, las más recientes primero. También se pueden ordenar por mejor o peor calificación.
-- **Botón Copy link:** copia la URL de la página. Al pegarla en WhatsApp, Instagram, etc. aparece la vista previa con la foto, que viene de las etiquetas `og:` de `index.html`.
+- **Botón Copy link:** copia la URL de la página. Al pegarla en WhatsApp, Instagram, etc. aparece la vista previa con la foto, que viene de las etiquetas `og:` de `review/index.html`.
