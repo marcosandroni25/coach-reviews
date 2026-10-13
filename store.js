@@ -15,13 +15,13 @@ export const LIMITS = { comment: 1000, name: 40, country: 56, photos: 3, reply: 
 
 export const DEFAULT_PROFILE = {
   name: "Marco Sandroni",
-  headline: "Padel coach · Motor sciences graduate",
+  headline: "Padel Coach | BSc in Sport and Exercise Science | Technique, Tactics & Mindset",
   experienceYears: 6,
   levels: "All levels, from beginner to competition",
   languages: "Italian, English, Spanish",
   price: "",
   email: "marco.sandroni25@gmail.com",
-  bio: "Most clinics start from the game and correct on the fly. Marco works the other way round. He starts from how each player's body moves, builds an efficient, conscious technique, and only then takes it to tactics, mindset and the match.",
+  bio: "Marco Sandroni is a padel coach who has worked with hundreds of players of every level, helping them reach their best on and off the court.\nHis coaching is built on movement science. He holds a degree in Sport and Exercise Science and a Master’s in Adapted Physical Activity, both from the University of Turin. That background shapes how he sees every shot: first as a motor skill, then as a technique. He looks at how the body moves, why the shot works, and how to make it more efficient.\nHe is a Level 1 Padel Instructor with the Italian Tennis and Padel Federation and holds the M3 Level 1 Instructor certification.\nMarco is currently part of the coaching team at M3 Padel Academy.\nHis sessions cover technique, tactics and mental preparation, in an environment that is both positive and demanding.\n🇮🇹 Italian · 🇬🇧 English · 🇪🇸 Spanish",
   photo: "",
 };
 

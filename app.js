@@ -1,4 +1,4 @@
-import { createStore, CATEGORIES, LIMITS, overallOf, compressImage, esc, fmtDate, starsSVG, LOGO_SYMBOL } from "./store.js";
+import { createStore, DEFAULT_PROFILE, CATEGORIES, LIMITS, overallOf, compressImage, esc, fmtDate, starsSVG, LOGO_SYMBOL } from "./store.js";
 
 const $ = (id) => document.getElementById(id);
 const STAR_PATH = "M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z";
@@ -35,18 +35,11 @@ $("copy-email").addEventListener("click", () => copy($("p-email").textContent, "
 function renderProfile(p) {
   $("p-name").textContent = p.name;
   $("p-headline").textContent = p.headline;
-  $("p-bio").textContent = p.bio;
+  $("p-bio").innerHTML = String(p.bio || "").split(/\n+/).map((t) => t.trim()).filter(Boolean).map((t) => `<p>${esc(t)}</p>`).join("");
   $("p-bio").hidden = !p.bio;
   $("p-email").textContent = p.email;
   $("p-photo").src = p.photo || "marco.jpg";
   document.querySelector(".lockup .nm").textContent = p.name;
-  const facts = [
-    ["Experience", p.experienceYears ? `${p.experienceYears} years` : ""],
-    ["Levels", p.levels],
-    ["Languages", p.languages],
-    ["Price", p.price],
-  ].filter(([, v]) => v);
-  $("p-facts").innerHTML = facts.map(([k, v]) => `<li><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></li>`).join("");
 }
 
 /* ---------- Summary ---------- */
@@ -285,6 +278,7 @@ $("review-form").addEventListener("submit", async (e) => {
 });
 
 /* ---------- Boot ---------- */
+renderProfile(DEFAULT_PROFILE);
 paintStars(); updateCounter(); renderPhotos();
 
 (async () => {

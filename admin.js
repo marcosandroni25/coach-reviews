@@ -44,7 +44,7 @@ $("sign-in").addEventListener("click", async () => {
 $("sign-out").addEventListener("click", () => store.signOut());
 
 /* ---------- Profile ---------- */
-const PF = { name: "pf-name", headline: "pf-headline", experienceYears: "pf-exp", levels: "pf-levels", languages: "pf-langs", price: "pf-price", email: "pf-email", bio: "pf-bio" };
+const PF = { name: "pf-name", headline: "pf-headline", email: "pf-email", bio: "pf-bio" };
 let photo = "";
 function fillProfile() {
   for (const [k, id] of Object.entries(PF)) $(id).value = profile[k] ?? "";
@@ -63,7 +63,6 @@ $("profile-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const p = { photo };
   for (const [k, id] of Object.entries(PF)) p[k] = $(id).value.trim();
-  p.experienceYears = Number(p.experienceYears) || 0;
   if (!p.name) { $("pf-msg").textContent = "Add a name."; $("pf-msg").className = "msg error"; return; }
   $("pf-save").disabled = true;
   try { await store.saveProfile(p); profileDirty = false; $("pf-msg").textContent = "Saved"; $("pf-msg").className = "msg ok"; toast("Profile saved"); }
