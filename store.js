@@ -15,7 +15,7 @@ export const LIMITS = { comment: 1000, name: 40, country: 56, photos: 3, reply: 
 
 export const DEFAULT_PROFILE = {
   name: "Marco Sandroni",
-  headline: "Padel Coach | BSc in Sport and Exercise Science | Technique, Tactics & Mindset",
+  headline: "BSc in Sport and Exercise Science | Technique, Tactics & Mindset",
   experienceYears: 6,
   levels: "All levels, from beginner to competition",
   languages: "Italian, English, Spanish",
