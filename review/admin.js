@@ -49,7 +49,7 @@ let photo = "";
 function fillProfile() {
   for (const [k, id] of Object.entries(PF)) $(id).value = profile[k] ?? "";
   photo = profile.photo || "";
-  $("pf-photo-preview").src = photo || "marco.jpg";
+  $("pf-photo-preview").src = photo || "marco-2.jpg";
 }
 $("profile-form").addEventListener("input", () => { profileDirty = true; });
 $("pf-photo").addEventListener("change", async (e) => {
@@ -58,7 +58,7 @@ $("pf-photo").addEventListener("change", async (e) => {
   try { photo = await compressImage(f, { maxSide: 900, maxBytes: 280_000 }); $("pf-photo-preview").src = photo; profileDirty = true; }
   catch (err) { $("pf-msg").textContent = err.message; $("pf-msg").className = "msg error"; }
 });
-$("pf-photo-reset").addEventListener("click", () => { photo = ""; $("pf-photo-preview").src = "marco.jpg"; profileDirty = true; });
+$("pf-photo-reset").addEventListener("click", () => { photo = ""; $("pf-photo-preview").src = "marco-2.jpg"; profileDirty = true; });
 $("profile-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const p = { photo };

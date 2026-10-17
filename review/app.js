@@ -46,7 +46,7 @@ function renderProfile(p) {
   $("p-bio").innerHTML = String(p.bio || "").split(/\n+/).map((t) => t.trim()).filter(Boolean).map((t) => `<p>${withFlags(esc(t))}</p>`).join("");
   $("p-bio").hidden = !p.bio;
   $("p-email").textContent = p.email;
-  $("p-photo").src = p.photo || "marco.jpg";
+  $("p-photo").src = p.photo || "marco-2.jpg";
   document.querySelector(".lockup .nm").textContent = p.name;
 }
 
