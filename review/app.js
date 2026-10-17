@@ -32,10 +32,18 @@ $("copy-link").addEventListener("click", () => copy(pageUrl(), "Link copied"));
 $("copy-email").addEventListener("click", () => copy($("p-email").textContent, "Email copied"));
 
 /* ---------- Profile ---------- */
+// Windows has no flag emoji (it shows the letters "IT", "GB"…), so known flags are drawn as images.
+const FLAG_FILES = new Set(["it", "gb", "es"]);
+function withFlags(html) {
+  return html.replace(/\uD83C[\uDDE6-\uDDFF]\uD83C[\uDDE6-\uDDFF]/g, (pair) => {
+    const code = [...pair].map((c) => String.fromCharCode(c.codePointAt(0) - 0x1F1E6 + 97)).join("");
+    return FLAG_FILES.has(code) ? `<img class="flag" src="flags/${code}.svg" alt="" width="18" height="12">` : pair;
+  });
+}
 function renderProfile(p) {
   $("p-name").textContent = p.name;
   $("p-headline").textContent = p.headline;
-  $("p-bio").innerHTML = String(p.bio || "").split(/\n+/).map((t) => t.trim()).filter(Boolean).map((t) => `<p>${esc(t)}</p>`).join("");
+  $("p-bio").innerHTML = String(p.bio || "").split(/\n+/).map((t) => t.trim()).filter(Boolean).map((t) => `<p>${withFlags(esc(t))}</p>`).join("");
   $("p-bio").hidden = !p.bio;
   $("p-email").textContent = p.email;
   $("p-photo").src = p.photo || "marco.jpg";
