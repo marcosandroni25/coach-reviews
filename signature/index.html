@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Firma de email · Coach Marco Sandroni</title>
+<style>
+  :root { --orange: #FF5A00; --black: #0D0D0D; --mist: #F2F2F2; --grey: #6B6B6B; color-scheme: light; }
+  body { margin: 0; background: #fff; color: var(--black); font: 16px/1.55 "Helvetica Neue", Arial, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 60px; }
+  h1 { font-size: 30px; font-weight: 900; letter-spacing: -0.03em; margin: 0 0 8px; }
+  p.lead { color: var(--grey); margin: 0 0 28px; }
+  .preview { border: 1px solid #ddd; padding: 28px 24px; background: #fff; overflow-x: auto; }
+  .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 16px 0 36px; }
+  button { font: 700 15px Arial, sans-serif; background: var(--orange); color: var(--black); border: 0; padding: 12px 20px; cursor: pointer; }
+  button:hover { background: #ff7124; }
+  #msg { font-size: 14px; color: #1E9E4A; }
+  h2 { font-size: 18px; margin: 28px 0 8px; }
+  ol { padding-left: 22px; margin: 0; }
+  li { margin-bottom: 6px; }
+  code { background: var(--mist); padding: 1px 5px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Firma de email</h1>
+  <p class="lead">Tocá “Copiar firma” y pegala en la configuración de firma de tu correo.</p>
+
+  <div class="preview" id="signature"><table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#0D0D0D;">
+  <tr>
+    <td style="padding:0 18px 0 0;vertical-align:middle;border-right:3px solid #FF5A00;">
+      <img src="https://raw.githubusercontent.com/marcosandroni25/coach-reviews/main/brand/email-logo.png" width="198" height="64" alt="Coach Marco Sandroni" style="display:block;border:0;width:198px;height:64px;">
+    </td>
+    <td style="padding:0 0 0 18px;vertical-align:middle;font-size:13px;line-height:21px;color:#0D0D0D;">
+      <div style="font-size:14px;font-weight:bold;letter-spacing:1px;color:#0D0D0D;padding-bottom:4px;">TEAM COACH MARCO SANDRONI</div>
+      <div><span style="color:#6B6B6B;">Email&nbsp;</span><a href="mailto:info@coachmarcosandroni.com" style="color:#0D0D0D;text-decoration:none;">info@coachmarcosandroni.com</a></div>
+      <div><span style="color:#6B6B6B;">WhatsApp&nbsp;</span><a href="https://wa.me/34641392514" style="color:#B83E00;text-decoration:none;font-weight:bold;">+34 641 39 25 14</a></div>
+    </td>
+  </tr>
+</table></div>
+
+  <div class="actions">
+    <button type="button" id="copy">Copiar firma</button>
+    <span id="msg" role="status"></span>
+  </div>
+
+  <h2>Webmail de Nominalia</h2>
+  <ol>
+    <li>Entrá a <code>webmail.nominalia.com</code> con <code>info@coachmarcosandroni.com</code>.</li>
+    <li>Andá a <strong>Configuración → Identidades</strong> (o <strong>Preferencias → Firma</strong>).</li>
+    <li>Si hay un botón de <strong>editor HTML</strong> o “formato enriquecido”, activalo.</li>
+    <li>Pegá la firma con <code>Ctrl+V</code> (<code>Cmd+V</code> en Mac) y guardá.</li>
+  </ol>
+
+  <h2>Gmail</h2>
+  <ol>
+    <li>Abrí Gmail → ⚙️ → <strong>Ver toda la configuración</strong> → pestaña <strong>General</strong>.</li>
+    <li>En <strong>Firma</strong>, tocá <strong>Crear nueva</strong>, ponele un nombre y pegá la firma.</li>
+    <li>Elegila en “Para correos nuevos” y “Para respuestas”, y tocá <strong>Guardar cambios</strong> al final de la página.</li>
+  </ol>
+</div>
+<script>
+  const sig = document.getElementById("signature");
+  const msg = document.getElementById("msg");
+  document.getElementById("copy").addEventListener("click", async () => {
+    const html = sig.innerHTML;
+    const text = "TEAM COACH MARCO SANDRONI\nEmail info@coachmarcosandroni.com\nWhatsApp +34 641 39 25 14";
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        "text/html": new Blob([html], { type: "text/html" }),
+        "text/plain": new Blob([text], { type: "text/plain" }),
+      })]);
+      msg.textContent = "Firma copiada. Pegala en la configuración de tu correo.";
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(sig);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      const ok = document.execCommand("copy");
+      sel.removeAllRanges();
+      msg.textContent = ok ? "Firma copiada. Pegala en la configuración de tu correo." : "Seleccioná la firma con el mouse y copiala con Ctrl+C.";
+    }
+  });
+</script>
+</body>
+</html>
