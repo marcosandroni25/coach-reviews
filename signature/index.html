@@ -36,6 +36,7 @@
       <div style="font-size:14px;font-weight:bold;letter-spacing:1px;color:#0D0D0D;padding-bottom:4px;">TEAM COACH MARCO SANDRONI</div>
       <div><span style="color:#6B6B6B;">Email&nbsp;</span><a href="mailto:info@coachmarcosandroni.com" style="color:#0D0D0D;text-decoration:none;">info@coachmarcosandroni.com</a></div>
       <div><span style="color:#6B6B6B;">WhatsApp&nbsp;</span><a href="https://wa.me/34641392514" style="color:#B83E00;text-decoration:none;font-weight:bold;">+34 641 39 25 14</a></div>
+      <div><span style="color:#6B6B6B;">Reviews&nbsp;</span><a href="https://coachmarcosandroni.com/review" style="color:#0D0D0D;text-decoration:none;">coachmarcosandroni.com/review</a></div>
     </td>
   </tr>
 </table></div>
@@ -65,7 +66,7 @@
   const msg = document.getElementById("msg");
   document.getElementById("copy").addEventListener("click", async () => {
     const html = sig.innerHTML;
-    const text = "TEAM COACH MARCO SANDRONI\nEmail info@coachmarcosandroni.com\nWhatsApp +34 641 39 25 14";
+    const text = "TEAM COACH MARCO SANDRONI\nEmail info@coachmarcosandroni.com\nWhatsApp +34 641 39 25 14\nReviews https://coachmarcosandroni.com/review";
     try {
       await navigator.clipboard.write([new ClipboardItem({
         "text/html": new Blob([html], { type: "text/html" }),
